@@ -1,0 +1,68 @@
+.content {
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: 30px;
+}
+
+h2 {
+  color: #fff;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.content_area {
+  margin-bottom: 20px;
+}
+
+.swiper-container1 {
+  position: relative;
+}
+
+.swiper-prev1 {
+  color: #fff;
+  position: absolute;
+  top: 135px;
+  left: 30px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.swiper-next1 {
+  color: #fff;
+  position: absolute;
+  top: 135px;
+  right: 10px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.swiper-container2 {
+  position: relative;
+}
+
+.swiper-prev2 {
+  color: #fff;
+  position: absolute;
+  top: 400px;
+  left: 30px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.swiper-next2 {
+  color: #fff;
+  position: absolute;
+  top: 400px;
+  right: 10px;
+  z-index: 1;
+  cursor: pointer;
+}
+.swiper-slide {
+  transition: all 0.3s;
+}
+
+.swiper-slide:hover {
+  transform: scale(1.2);
+  z-index: 5;
+}
