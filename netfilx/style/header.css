@@ -57,7 +57,7 @@
   box-sizing: border-box;
   border-radius: 5px;
   outline: none;
-  background-color: #000;
+  background-color: transparent;
   color: #777;
   font-size: 12px;
   transition: width 0.4s;
@@ -69,7 +69,6 @@
 
 .search input:focus {
   border: 1px solid #fff;
-
   width: 190px;
 }
 
