@@ -28,3 +28,20 @@ prev2.addEventListener("click", function () {
 next2.addEventListener("click", function () {
   document.querySelector(".swiper-wrapper2").style.transform = "translate(-100vw)";
 });
+
+const searchEl = document.querySelector(".search");
+const searchInputEl = document.querySelector("input");
+
+searchEl.addEventListener("click", function () {
+  searchInputEl.focus();
+});
+
+searchInputEl.addEventListener("focus", function () {
+  searchEl.classList.add("focused");
+  searchInputEl.setAttribute("placeholder", "제목, 사람, 장르");
+});
+
+searchInputEl.addEventListener("blur", function () {
+  searchEl.classList.remove("focused");
+  searchInputEl.setAttribute("placeholder", "");
+});

@@ -92,7 +92,7 @@ h2 {
 
 @media (max-height: 660px) {
   .content {
-    transform: translateY(-20px);
+    transform: translateY(-100px);
   }
 }
 
@@ -100,5 +100,10 @@ h2 {
   .main_title_info,
   .button_container {
     display: none;
+  }
+}
+@media (max-height: 550px) {
+  .content {
+    transform: translateY(0px);
   }
 }
