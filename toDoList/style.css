@@ -1,0 +1,92 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #333;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+.inner {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#clock-container {
+  width: 440px;
+}
+
+#clock {
+  font-size: 8rem;
+  color: white;
+}
+
+input {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 1.3rem;
+  padding: 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: rgb(80, 80, 80);
+  font-size: 1.2rem;
+  font-weight: 600;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+  outline: none;
+  cursor: pointer;
+  transition: all, 0.4s;
+}
+
+input:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+input:hover::-webkit-input-placeholder {
+  color: rgb(50, 50, 50);
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 1px solid white;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+
+#login-input {
+  width: 200px;
+}
+
+#todo-input {
+  width: 400px;
+}
+
+li {
+  text-align: center;
+  margin-top: 20px;
+}
+span {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  margin-left: 15px;
+  font-size: 1.5rem;
+}
+
+.checked {
+  text-decoration: line-through red 5px;
+}
