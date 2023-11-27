@@ -1,17 +1,25 @@
 const toDoForm = document.getElementById("todo-form");
 const toDoInput = document.querySelector("#todo-form input");
 const toDoList = document.getElementById("todo-list");
+const toDos_key = "toDos";
+let toDos = [];
 
-const toDos = [];
+function saveToDos() {
+  localStorage.setItem(toDos_key, JSON.stringify(toDos));
+}
 
 function deleteTodo(event) {
   const li = event.target.parentElement;
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+  saveToDos();
   li.remove();
 }
 
 function checkTodo(event) {
   const li = event.target.parentElement;
   li.classList.toggle("checked");
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+  saveToDos();
 }
 
 function changeTodo(event) {
@@ -29,13 +37,11 @@ function changeTodo(event) {
   inputField.focus();
 }
 
-function handleSubmit(event) {
-  event.preventDefault();
-  const newTodo = toDoInput.value;
-  toDoInput.value = "";
+function createTodo(todo) {
   const li = document.createElement("li");
+  li.id = todo.id;
   const span = document.createElement("span");
-  span.innerText = newTodo;
+  span.innerText = todo.text;
   const delBtn = document.createElement("button");
   delBtn.innerText = "X";
   const changeBtn = document.createElement("button");
@@ -52,7 +58,30 @@ function handleSubmit(event) {
   checkBtn.addEventListener("click", checkTodo);
 }
 
+function handleSubmit(event) {
+  event.preventDefault();
+  const newTodo = toDoInput.value;
+  toDoInput.value = "";
+  const newTodos = {
+    text: newTodo,
+    id: Date.now(),
+  };
+  toDos.push(newTodos);
+  createTodo(newTodos);
+  saveToDos();
+}
+
 toDoForm.addEventListener("submit", handleSubmit);
+
+function loadToDos() {
+  const savedToDos = localStorage.getItem(toDos_key);
+  if (savedToDos) {
+    const parsedToDos = JSON.parse(savedToDos);
+    parsedToDos.forEach(createTodo);
+  }
+}
+
+loadToDos();
 
 // 시계
 const clock = document.getElementById("clock");
