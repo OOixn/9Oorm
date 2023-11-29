@@ -16,7 +16,7 @@ searchUser.addEventListener("keyup", (e) => {
     });
   } else {
     ui.clearProfile();
-    // ui.clearRepos();
-    // ui.showAlert("Please enter a username", "alert alert-danger");
+    ui.clearRepos();
+    ui.showAlert("Please enter a username", "alert alert-danger");
   }
 });
