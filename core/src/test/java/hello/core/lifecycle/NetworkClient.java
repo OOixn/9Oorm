@@ -1,14 +1,7 @@
 package hello.core.lifecycle;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
 
-
-// 스프링 전용 인터페이스, 해당 코드가 스프링 전용 인터페이스에 의존한다.
-// 초기화, 소멸 메서드의 이름을 변경할 수 없다.
-// 내가 코드를 고칠 수 없는 외부 라이브러리에 적용할 수 없다.
-// 지금은 거의 사용하지 않는다!
-public class NetworkClient implements InitializingBean, DisposableBean {
+public class NetworkClient {
 
     private String url;
 
@@ -34,16 +27,15 @@ public class NetworkClient implements InitializingBean, DisposableBean {
         System.out.println("close: " + url);
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        System.out.println("NetworkClient.afterPropertiesSet" );
+
+    public void init(){
+        System.out.println("NetworkClient.init" );
         connect();
         call("초기화 연결 메시지");
     }
 
-    @Override
-    public void destroy() throws Exception {
-        System.out.println("NetworkClient.destroy");
+    public void close(){
+        System.out.println("NetworkClient.close");
         disconnect();
     }
 }
