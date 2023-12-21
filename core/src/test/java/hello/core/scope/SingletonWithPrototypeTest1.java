@@ -2,6 +2,7 @@ package hello.core.scope;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import jakarta.inject.Provider;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,15 +44,16 @@ public class SingletonWithPrototypeTest1 {
     @Scope("singleton")
     static class ClientBean{
         @Autowired
-        private ObjectProvider<PrototypeBean> prototypeBeanProvider;
+        private Provider<PrototypeBean> prototypeBeanProvider;
 
-        // 스프링 컨테이너에서 지정한 빈을 대신 찾아주는 기능이라고 생각하면 편하다.
-        // 딱 필요한 DL 정도의 기능만 제공한다.
-        // ObjectFactory보다 좋은 점 상속, 옵션, 스트림 처리 등 편의 기능이 많고, 별도의 라이브러비가 필요없다,
-        // import org.springframework.beans.factory.ObjectProvider; 스프링에 의존한다.
+        // gradle에 추가해줘야함!
+        // jakarta.inject.Provider 사용해야함!
+        // 자바 표준이고, 기능이 단순하므로 단위테스트를 만들거나 mock 코드를 만들기는 훨씬 쉬워진다.
+        // 별도의 라이브러리가 필요하다.
+        // 자바 표준이므로 스프링이 아닌 다른 컨테이너에서도 사용할 수 있다.
 
         public int logic(){
-            PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
             prototypeBean.addCount();
             int count = prototypeBean.getCount();
             return count;
