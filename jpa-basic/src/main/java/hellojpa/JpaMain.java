@@ -6,10 +6,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
 
-// 엔티티 매니저 팩토리는 하나만 생성해서 애플리케이션 전체에서 공유해야 한다.
-// 엔티티 매니저는 쓰레드간에 공유X (사용하고 버려야 한다).
-// JPA의 모든 데이터 변경은 트랜잭션 안에서 실행해야 한다.
-
 public class JpaMain {
     public static void main(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
@@ -20,21 +16,15 @@ public class JpaMain {
         tx.begin();
 
         try {
-            
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .getResultList();
+            // 비영속
+            Member member = new Member();
+            member.setId(100L);
+            member.setName("Hello100");
 
-            for (Member member : result) {
-                System.out.println("member = " + member.getName());
-            }
+            // 영속
+            em.persist(member);
 
-
-//            Member findMember = em.find(Member.class, 1L);
-            //수정
-//            findMember.setName("HelloJPA");
-
-            //삭제
-            // em.remove();
+            // 영속상태가 된다고 DB에 쿼리가 날아가는게 아니다, commit을 해줘야만 저장이 된다!
 
             tx.commit();
         } catch (Exception e){
