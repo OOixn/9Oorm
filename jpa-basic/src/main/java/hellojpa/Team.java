@@ -12,21 +12,9 @@ public class Team {
     @Column(name = "TEAM_ID")
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "team") // 외래 키가 있는 곳을 주인으로 정하자. 주인이 아니라면 적어줘야한다, 주인이 아니면 읽기만 가능하다, 주인만이 외래 키를 관리(등록, 수정), 주인이 업데이트 되면 db도 업데이트
+
+    @OneToMany(mappedBy = "team")
     private List<Member> members = new ArrayList<>();
-
-    public void addMember(Member member){
-        member.setTeam(this);
-        members.add(member);
-    }
-
-    public List<Member> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<Member> members) {
-        this.members = members;
-    }
 
     public Long getId() {
         return id;
@@ -35,7 +23,6 @@ public class Team {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;
@@ -47,17 +34,32 @@ public class Team {
 }
 
 /*
-양방향 매핑시 가장 많이 하는 실수 - 연관관계의 주인에 값을 입력하지 않음
+연관관게 매핑시 고려사항 3가지
 
-순수 객체 상태를 고려해서 항상 양쪽에 값을 설정하자
+다중성.
+다대일 @ManyToOne, 일대다 @OneToMany, 일대일 @OneToOne, 다대다 @ManyToMany <- 실무에서 사용하면 안된다.
 
-연관관계 편의 메소드를 생성할 수 있지만, 양쪽에 만들어주면 문제가 될 수 있으므로 한쪽에만 만ㅁ들어준다. 일에 만들어도 되고 다에 만들어도 된다.
+단방향, 양방향
+테이블
+- 외래 키  하나로 양쪽 조인 가능
+- 사실 방향이라는 개념이 없다.
+객체
+- 참조용 필드가 있는 쪽으로만 참조 가능
+- 한쪽만 참조하면 단방향
+- 양쪽이 서로 참조하면 양방향
 
-무한루프를 조심해야 한다. toString을 양쪽에서 만들경우 계속해서 실행이 된다,
+연관관계의 주인
+- 테이블은 외래 키 하나로 두 테이블이 연관관계를 맺음
+- 객체 양방향 관계는 A->B, B->A 처럼 참조가 2군데
+- 객체 양방향 관계는 참조가 2군데 있음. 둘중 테이블의 외래 키를 관리할 곳을 지정해야함
+- 연관관계의 주인: 외래 키를 관리하는 참조
+- 주인의 반대편: 외래 키에 영향을 주지 않음, 단순 조회만 가능
 
-단방향 매핑만으로도 이미 연관관계 매핑은 완료 된 것이다!
+다대일 [N:1] 가장 많이 사용한다.
 
-양방향 매핑은 반대바향으로 조회 기능이 추가된 것 뿐이다.
+외래 키가 있는 쪽이 연관관의 주인이다.
 
-단방향 매핑을 잘하고 양방향은 ㅍㄹ요할 때 추가해도 된다.
+양쪽을 서로 참조하도록 개발해야한다.
+
+
  */
