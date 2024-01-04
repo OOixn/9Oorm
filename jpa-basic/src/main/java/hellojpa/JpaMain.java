@@ -23,15 +23,13 @@ public class JpaMain {
 
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeam(team);
+            team.addMember(member);
             em.persist(member);
 
-            Member findMember = em.find(Member.class, member.getId());
+//            team.getMembers().add(member); //연관관계의 주인에 값 설정
 
-            Team findTeam = findMember.getTeam();
-
-
-
+            em.flush();
+            em.clear();
 
             tx.commit();
         } catch (Exception e){
