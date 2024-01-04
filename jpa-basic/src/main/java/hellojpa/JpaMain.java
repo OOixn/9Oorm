@@ -17,19 +17,14 @@ public class JpaMain {
 
         try {
 
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
-
             Member member = new Member();
             member.setUsername("member1");
-            team.addMember(member);
-            em.persist(member);
 
-//            team.getMembers().add(member); //연관관계의 주인에 값 설정
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);
 
-            em.flush();
-            em.clear();
+            em.persist(team);
 
             tx.commit();
         } catch (Exception e){
@@ -40,5 +35,7 @@ public class JpaMain {
 
         emf.close();
     }
+
+
 }
 

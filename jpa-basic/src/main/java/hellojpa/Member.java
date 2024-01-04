@@ -12,7 +12,7 @@ import java.util.Date;
         private String username;
 
         @ManyToOne
-        @JoinColumn(name = "TEAM_ID")
+        @JoinColumn(insertable = false, updatable = false)
         private Team team;
 
         public Long getId() {
@@ -31,14 +31,5 @@ import java.util.Date;
                 this.username = username;
         }
 
-        public Team getTeam() {
-                return team;
-        }
-
-
-
-        public void setTeam(Team team) {
-                this.team = team;
-        }
 }
 
