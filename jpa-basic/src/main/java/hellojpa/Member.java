@@ -15,6 +15,10 @@ import java.util.Date;
         @JoinColumn(insertable = false, updatable = false)
         private Team team;
 
+        @OneToOne
+        @JoinColumn(name = "LOCkER_ID")
+        private Locker locker;
+
         public Long getId() {
                 return id;
         }
