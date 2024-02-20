@@ -23,7 +23,7 @@ public class ScannerWhileEx3 {
         }
 */
 
-        while ((input = scanner.nextInt()) != -1) {
+        while ((input = scanner.nextInt()) != -1) { // -1은 -1이 아니다로 해석되어 false를 반환함.
             sum += input;
             count++;
         }

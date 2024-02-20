@@ -5,7 +5,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -19,17 +18,17 @@ public class JpaMain {
         try {
 
             Member member = new Member();
-            member.setUsername("user");
-            member.setCreatedBy("kim");
-            member.setCreatedDate(LocalDateTime.now());
+            member.setUsername("hello");
 
             em.persist(member);
-
             em.flush();
             em.clear();
 
+            Member reference = em.getReference(Member.class, member.getUsername());
+
+
             tx.commit();
-        } catch (Exception e){
+        } catch (Exception e) {
             tx.rollback();
         } finally {
             em.close();
@@ -37,6 +36,8 @@ public class JpaMain {
 
         emf.close();
     }
+
+
 
 
 }

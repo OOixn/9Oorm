@@ -24,8 +24,8 @@ add(1, 2); //number가 return됨
 // }
 
 // 함수 오버로딩을 사용한 예
-function saySomething(word: string): string;
-function saySomething(words: string[]): string;
+// function saySomething(word: string): string;
+// function saySomething(words: string[]): string;
 function saySomething(word: any): any {
   if (typeof word === "string") {
     return word;

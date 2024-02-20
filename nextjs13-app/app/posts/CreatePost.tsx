@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; // 여기서 가져와야 함
 import { useState } from "react";
 
 const CreatePost = () => {
