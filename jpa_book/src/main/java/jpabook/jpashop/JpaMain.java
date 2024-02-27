@@ -13,7 +13,9 @@ public class JpaMain {
 
         EntityManager em = emf.createEntityManager();
 
-        EntityTransaction tx = em.getTransaction();
+         em.getTransaction();
+
+
         tx.begin();
 
         try {
